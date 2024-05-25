@@ -64,4 +64,4 @@ python2-dev.
 
 ### Cridex
 
-### 
+### WannaCry

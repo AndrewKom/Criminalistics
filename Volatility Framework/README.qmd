@@ -79,4 +79,4 @@ sudo python setup.py install
 
 ### Cridex
 
-### 
+### WannaCry
