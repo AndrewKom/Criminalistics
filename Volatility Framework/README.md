@@ -9,3 +9,59 @@ Public License для извлечения цифровых артефактов
 нагрузкой.
 
 ## Установка Volatility Framework
+
+Необходимо произвести установку необходимой версии python для правильной
+работы фреймворка.
+
+    wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+
+![](images/clipboard-480825925.png)
+
+Произведем установку pip для python2
+
+    sudo python2 get-pip.py
+
+![](images/clipboard-3217783170.png)
+
+Произведем обновление инструментов установки а также установим
+python2-dev.
+
+    pip2 install --upgrade setuptools 
+
+    sudo apt-get install python2-dev
+
+![](images/clipboard-2742129718.png)
+
+![](images/clipboard-817953072.png)
+
+Производим установку зависимостей для дальнейшей установки самого
+фреймворка.
+
+    pip2 install pycrypto
+    pip2 install distorm3
+
+![](images/clipboard-3092615861.png)
+
+Производим копирования git для последующей установки и переходим в папку
+с скопированным репозиторием
+
+    git clone https://github.com/volatilityfoundation/volatility
+    cd volatility
+
+![](images/clipboard-1022345405.png)
+
+Запускаем установку фреймворка
+
+    sudo python setup.py install
+
+![](images/clipboard-596062415.png)
+
+Проверяем его работоспособность
+
+![](images/clipboard-1234823303.png)
+
+## Анализ дампов
+
+### Cridex
+
+### 
