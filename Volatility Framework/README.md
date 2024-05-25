@@ -52,7 +52,7 @@ python2-dev.
 
 Запускаем установку фреймворка
 
-    sudo python setup.py install
+    sudo python2 setup.py install
 
 ![](images/clipboard-596062415.png)
 
