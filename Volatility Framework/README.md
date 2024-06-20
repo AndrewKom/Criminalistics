@@ -64,4 +64,71 @@ python2-dev.
 
 ### Cridex
 
+Получим первичную информацию о доставшемся дампе памяти
+
+    vol.py -f cridex.vmem imageinfo
+
+![](images/clipboard-3119893713.png)
+
+Больше всего нас интересует название ОС с которой был произведен дамп –
+WinXPSP2x86. В дальнейшем будем использовать любые плагины только под
+данную платформу.
+
+Для начала посмотрим какие процессы были запущены в момент взятия дампа.
+Для наглядности отобразим деревом.
+
+    vol.py -f cridex.vmem --profile=WinXPSP2x86 pstree
+
+![](images/clipboard-1106381786.png)
+
+Из интересного можно отметить только процесс с pid=1640, reader_sl.exe,
+который был вызван pid=1484, explorer.exe. Остальные представляют на
+первый взгляд базовые процессы системы Windows.
+
+Попробуем посмотреть скрытые процессы в системе. Может есть не менее
+подозрительные процессы.
+
+    vol.py -f cridex.vmem --profile=WinXPSP2x86 psxview
+
+![](images/clipboard-4056058647.png)
+
+Однако ничего интересного в нашем дампе не удалось найти.
+
+Посмотрим сетевой статус на нашем дампе, посмотрим TCP-соединения
+
+    vol.py -f cridex.vmem --profile=WinXPSP2x86 connscan
+
+![](images/clipboard-119830200.png)
+
+Сокеты:
+
+    vol.py -f cridex.vmem --profile=WinXPSP2x86 sockets
+
+![](images/clipboard-4158249574.png)
+
+Активные соединения(Не работает для нашего профиля)
+
+    vol.py -f cridex.vmem --profile=WinXPSP2x86 netscan
+
+![](images/clipboard-1023208647.png)
+
+Наконец стоит получить данные исполняемый файл, чтобы удостовериться,
+что он является вредоносным.
+
+    vol.py -f cridex.vmem --profile=WinXPSP2x86 procdump -p 1640 --dump-dir volatility
+
+Отправляем файл на проверку в VirusTotal и подтверждаем свои опасения.
+Это вредоносная программа, притворяющаяся настоящим процессом Adobe
+Acrobat.
+
+![](images/clipboard-207534393.png)
+
+![](images/clipboard-1329403455.png)
+
+![](images/clipboard-4005301943.png)
+
+![](images/clipboard-797310221.png)
+
+![](images/clipboard-27504675.png)
+
 ### WannaCry
